@@ -1,0 +1,10 @@
+# Core dependencies
+apify-client==1.6.0
+google-generativeai==0.3.2
+jinja2==3.1.2
+python-dotenv==1.0.0
+playwright==1.40.0
+
+# Additional dependencies for better functionality
+requests==2.31.0  # HTTP library used by apify-client
+python-dateutil==2.8.2  # Date parsing utilities

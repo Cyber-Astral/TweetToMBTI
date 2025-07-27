@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBTI Analysis Terminal - @elonmusk</title>
+    <style>
+        :root {
+            --black: #0d1117;
+            --green: #39ff14;
+            --white: #e6edf3;
+            --grey: #8b949e;
+            --blue: #58a6ff;
+        }
+
+        body {
+            background-color: var(--black);
+            color: var(--white);
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 16px;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .terminal {
+            width: 100%;
+            max-width: 800px;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            background-color: #161b22;
+            box-shadow: 0 0 25px rgba(57, 255, 20, 0.2);
+            overflow: hidden;
+        }
+
+        .terminal-header {
+            background-color: #30363d;
+            color: var(--grey);
+            padding: 8px 15px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .terminal-title {
+            margin: 0;
+        }
+
+        .terminal-buttons {
+            display: flex;
+        }
+
+        .terminal-button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-left: 8px;
+            border: 1px solid var(--black);
+        }
+        .terminal-button.red { background-color: #ff5f56; }
+        .terminal-button.yellow { background-color: #ffbd2e; }
+        .terminal-button.green { background-color: #27c93f; }
+
+
+        .terminal-body {
+            padding: 15px;
+            min-height: 600px;
+            overflow-y: auto;
+        }
+
+        pre {
+            color: var(--green);
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            text-shadow: 0 0 3px var(--green);
+            margin: 1em 0;
+        }
+        
+        .prompt {
+            color: var(--white);
+        }
+
+        .prompt .user {
+            color: var(--green);
+        }
+        .prompt .path {
+            color: var(--blue);
+        }
+
+        .output {
+            color: var(--grey);
+        }
+        
+        .highlight {
+            color: var(--blue);
+            font-weight: bold;
+        }
+        
+        .display-name {
+            color: var(--green);
+            font-weight: normal;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 1.2em;
+            background-color: var(--green);
+            animation: blink 1s step-end infinite;
+            margin-left: 5px;
+        }
+
+        @keyframes blink {
+            from, to {
+                background-color: transparent;
+            }
+            50% {
+                background-color: var(--green);
+            }
+        }
+
+        /* 自定义滚动条 */
+        .terminal-body::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .terminal-body::-webkit-scrollbar-track {
+            background: var(--black);
+        }
+
+        .terminal-body::-webkit-scrollbar-thumb {
+            background: #30363d;
+            border-radius: 5px;
+        }
+
+        .terminal-body::-webkit-scrollbar-thumb:hover {
+            background: #484f58;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="terminal">
+        <div class="terminal-header">
+            <p class="terminal-title">mbti_analyzer</p>
+            <div class="terminal-buttons">
+                <div class="terminal-button red"></div>
+                <div class="terminal-button yellow"></div>
+                <div class="terminal-button green"></div>
+            </div>
+        </div>
+        <div class="terminal-body">
+            <p class="prompt"><span class="user">user@LLM</span>:<span class="path">~</span>$ ./mbti_analyzer.sh --user elonmusk --deep</p>
+            <p class="output">[INFO] 正在启动深度分析程序...</p>
+            <p class="output">[INFO] 已连接到 Twitter API，正在获取推文数据...</p>
+            <p class="output">[INFO] 开始进行自然语言处理与人格特征建模...</p>
+            <p class="output">[SUCCESS] 分析完成！正在生成报告...</p>
+            
+            <pre>███████╗  ███╗   ██╗  ████████╗       ██╗  
+██╔════╝  ████╗  ██║  ╚══██╔══╝       ██║  
+█████╗    ██╔██╗ ██║     ██║          ██║  
+██╔══╝    ██║╚██╗██║     ██║     ██   ██║  
+███████╗  ██║ ╚████║     ██║     ╚█████╔╝  
+╚══════╝  ╚═╝  ╚═══╝     ╚═╝      ╚════╝   </pre>
+            
+            <p class="output">============================================================</p>
+            <p class="output"> MBTI 人格分析报告: <span class="highlight">@elonmusk</span> <span class="display-name">Elon Musk</span></p>
+            <p class="output">============================================================</p>
+            <p class="output">分析结论: <span class="highlight">ENTJ (指挥官 - 大胆、有想象力的领导者)</span></p>
+            <br>
+            <p class="output">--- 维度分析 ---</p>
+            
+            <p class="output">1. 精力来源: <span class="highlight">外向 (Extraversion)</span></p>
+            <pre>[E] *******--- [I] (70%)</pre>
+            <p class="output">   > 该用户展现出明显的外向特质。其能量似乎主要来源于与外部世界的互动和对信息的主动输出。推文内容多为公开的产品更新、公司成就、未来计划的发布，以及对宏观社会现象和技术趋势的广泛评论。尽管一些原创推文内容深入且具思考性，但其频繁的更新和直接面向大众的沟通模式，以及对他人评论的积极（尽管有时简短）回应，都表明该用户偏好通过外部活动和交流来表达自己并获取能量。其并非仅仅在被动回复，而是主动塑造公共话语和信息流。</p>
+            <br>
+            
+            <p class="output">2. 信息获取: <span class="highlight">直觉 (Intuition)</span></p>
+            <pre>[N] ********-- [S] (80%)</pre>
+            <p class="output">   > 该用户在推文内容中展现出强烈的直觉倾向。虽然也会提及具体的产品更新和问题修复（如Grok应用更新、SpaceX服务中断），但其更频繁地讨论抽象概念、未来可能性和宏大愿景。例如，关于“真相寻求的AI未来”、“太阳作为地球能源的终极来源”、“实现火星旅行的可能性”、“文明衰落与低出生率的关系”，以及将AI比喻为“超音速海啸”等，都体现了其超越具体细节，洞察模式、追求理论和探索潜能的思维模式。这种思考是从具体现象中提炼出普遍规律，并展望未来走向的典型直觉特征。</p>
+            <br>
+
+            <p class="output">3. 决策方式: <span class="highlight">思考 (Thinking)</span></p>
+            <pre>[T] ********-- [F] (85%)</pre>
+            <p class="output">   > 该用户的表达风格和处理问题的方式强烈指向思考型特质。其推文以逻辑分析、客观事实和效率为导向。在讨论技术或商业估值时，强调“数学是显而易见的和明确的”、“极端执行”；在处理服务中断时，则关注“根本原因”和“确保不再发生”。即使在慈善行为的分享中，也提及“填补联邦资金缺口”的务实目的。虽然偶尔使用表情符号或简单的情感词汇（如“抱歉”、“Phew”），但这并未构成其主要沟通风格。该用户倾向于直接指出问题，进行基于事实和逻辑的辩论，强调客观真理，而非过多地考虑情感影响或人际和谐。</p>
+            <br>
+
+            <p class="output">4. 生活方式: <span class="highlight">判断 (Judging)</span></p>
+            <pre>[J] ********-- [P] (75%)</pre>
+            <p class="output">   > 该用户表现出明显的判断型偏好。其推文常包含明确的计划、目标和完成导向。例如，“ shortly before the next flight, I will do a live technical update on Starship”、“rolled out on web, coming to your phone soon”、“As promised”以及“Tesla team is focused on making sure all Tesla owners try out FSD”等表述，都体现出其对计划性、承诺以及追求成果的重视。在面对问题时，该用户也倾向于寻找“根本原因”并“确保不再发生”，而非仅仅是灵活适应。这种强调执行、达成目标和结构化管理未来的倾向，是典型的判断型特征。</p>
+            <br>
+            
+            <p class="output">--- 综合分析 ---</p>
+            <p class="output">综合来看，该用户展现出ENTJ的特质。其是一个以目标为导向的领导者，能量充沛，乐于公开表达其宏大愿景和对未来的深刻洞察。该用户倾向于运用逻辑和分析来解决问题，并致力于通过计划性和执行力来实现其前瞻性的目标。其沟通风格直接、客观且富有远见，专注于推动创新和解决大规模挑战。</p>
+            <br>
+            
+            <p class="output">--- 报告生成时间: 2025-07-27 14:12:05 ---</p>
+            <p class="output">--- Powered by Gemini 2.5 Flash ---</p>
+            <p class="output">--- Created by <span class="highlight">@CyberAstral</span> <span class="display-name">符控的Astral</span> ---</p>
+            <span class="cursor"></span>
+        </div>
+    </div>
+
+</body>
+</html>

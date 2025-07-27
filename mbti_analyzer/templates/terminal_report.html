@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBTI Analysis Terminal - @{{ username }}</title>
+    <style>
+        :root {
+            --black: #0d1117;
+            --green: #39ff14;
+            --white: #e6edf3;
+            --grey: #8b949e;
+            --blue: #58a6ff;
+        }
+
+        body {
+            background-color: var(--black);
+            color: var(--white);
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 16px;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .terminal {
+            width: 100%;
+            max-width: 800px;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            background-color: #161b22;
+            box-shadow: 0 0 25px rgba(57, 255, 20, 0.2);
+            overflow: hidden;
+        }
+
+        .terminal-header {
+            background-color: #30363d;
+            color: var(--grey);
+            padding: 8px 15px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .terminal-title {
+            margin: 0;
+        }
+
+        .terminal-buttons {
+            display: flex;
+        }
+
+        .terminal-button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-left: 8px;
+            border: 1px solid var(--black);
+        }
+        .terminal-button.red { background-color: #ff5f56; }
+        .terminal-button.yellow { background-color: #ffbd2e; }
+        .terminal-button.green { background-color: #27c93f; }
+
+
+        .terminal-body {
+            padding: 15px;
+            min-height: 600px;
+            overflow-y: auto;
+        }
+
+        pre {
+            color: var(--green);
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            text-shadow: 0 0 3px var(--green);
+            margin: 1em 0;
+        }
+        
+        .prompt {
+            color: var(--white);
+        }
+
+        .prompt .user {
+            color: var(--green);
+        }
+        .prompt .path {
+            color: var(--blue);
+        }
+
+        .output {
+            color: var(--grey);
+        }
+        
+        .highlight {
+            color: var(--blue);
+            font-weight: bold;
+        }
+        
+        .display-name {
+            color: var(--green);
+            font-weight: normal;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 1.2em;
+            background-color: var(--green);
+            animation: blink 1s step-end infinite;
+            margin-left: 5px;
+        }
+
+        @keyframes blink {
+            from, to {
+                background-color: transparent;
+            }
+            50% {
+                background-color: var(--green);
+            }
+        }
+
+        /* 自定义滚动条 */
+        .terminal-body::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .terminal-body::-webkit-scrollbar-track {
+            background: var(--black);
+        }
+
+        .terminal-body::-webkit-scrollbar-thumb {
+            background: #30363d;
+            border-radius: 5px;
+        }
+
+        .terminal-body::-webkit-scrollbar-thumb:hover {
+            background: #484f58;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="terminal">
+        <div class="terminal-header">
+            <p class="terminal-title">mbti_analyzer</p>
+            <div class="terminal-buttons">
+                <div class="terminal-button red"></div>
+                <div class="terminal-button yellow"></div>
+                <div class="terminal-button green"></div>
+            </div>
+        </div>
+        <div class="terminal-body">
+            <p class="prompt"><span class="user">user@LLM</span>:<span class="path">~</span>$ ./mbti_analyzer.sh --user {{ username }} --deep</p>
+            <p class="output">[INFO] 正在启动深度分析程序...</p>
+            <p class="output">[INFO] 已连接到 Twitter API，正在获取推文数据...</p>
+            <p class="output">[INFO] 开始进行自然语言处理与人格特征建模...</p>
+            <p class="output">[SUCCESS] 分析完成！正在生成报告...</p>
+            
+            <pre>{{ ascii_art }}</pre>
+            
+            <p class="output">============================================================</p>
+            <p class="output"> MBTI 人格分析报告: <span class="highlight">@{{ username }}</span>{% if display_name %} <span class="display-name">{{ display_name }}</span>{% endif %}</p>
+            <p class="output">============================================================</p>
+            <p class="output">分析结论: <span class="highlight">{{ mbti_type }} ({{ mbti_description }})</span></p>
+            <br>
+            <p class="output">--- 维度分析 ---</p>
+            
+            <p class="output">1. 精力来源: <span class="highlight">{{ dimensions.E_I.type|mbti_dimension_name('E_I') }}</span></p>
+            <pre>[{{ 'E' if dimensions.E_I.type == 'E' else 'I' }}] {{ progress_bar(dimensions.E_I.percentage, dimensions.E_I.type, 'E_I') }} [{{ 'I' if dimensions.E_I.type == 'E' else 'E' }}] ({{ dimensions.E_I.percentage }}%)</pre>
+            <p class="output">   > {{ dimensions.E_I.analysis }}</p>
+            <br>
+            
+            <p class="output">2. 信息获取: <span class="highlight">{{ dimensions.S_N.type|mbti_dimension_name('S_N') }}</span></p>
+            <pre>[{{ 'S' if dimensions.S_N.type == 'S' else 'N' }}] {{ progress_bar(dimensions.S_N.percentage, dimensions.S_N.type, 'S_N') }} [{{ 'N' if dimensions.S_N.type == 'S' else 'S' }}] ({{ dimensions.S_N.percentage }}%)</pre>
+            <p class="output">   > {{ dimensions.S_N.analysis }}</p>
+            <br>
+
+            <p class="output">3. 决策方式: <span class="highlight">{{ dimensions.T_F.type|mbti_dimension_name('T_F') }}</span></p>
+            <pre>[{{ 'T' if dimensions.T_F.type == 'T' else 'F' }}] {{ progress_bar(dimensions.T_F.percentage, dimensions.T_F.type, 'T_F') }} [{{ 'F' if dimensions.T_F.type == 'T' else 'T' }}] ({{ dimensions.T_F.percentage }}%)</pre>
+            <p class="output">   > {{ dimensions.T_F.analysis }}</p>
+            <br>
+
+            <p class="output">4. 生活方式: <span class="highlight">{{ dimensions.J_P.type|mbti_dimension_name('J_P') }}</span></p>
+            <pre>[{{ 'J' if dimensions.J_P.type == 'J' else 'P' }}] {{ progress_bar(dimensions.J_P.percentage, dimensions.J_P.type, 'J_P') }} [{{ 'P' if dimensions.J_P.type == 'J' else 'J' }}] ({{ dimensions.J_P.percentage }}%)</pre>
+            <p class="output">   > {{ dimensions.J_P.analysis }}</p>
+            <br>
+            
+            <p class="output">--- 综合分析 ---</p>
+            <p class="output">{{ overall_analysis }}</p>
+            <br>
+            
+            <p class="output">--- 报告生成时间: {{ generated_time }} ---</p>
+            <p class="output">--- Powered by Gemini 2.5 Flash ---</p>
+            <p class="output">--- Created by <span class="highlight">@CyberAstral</span> <span class="display-name">符控的Astral</span> ---</p>
+            <span class="cursor"></span>
+        </div>
+    </div>
+
+</body>
+</html>

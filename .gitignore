@@ -1,0 +1,54 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+*.egg-info/
+dist/
+build/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project specific
+scraper/scraped_data/
+mbti_analyzer/reports/
+mbti_analyzer/images/
+*.csv
+*.json
+!requirements.txt
+!scraper/config.py
+
+# Environment variables
+.env
+
+# Temporary files
+*.tmp
+*.bak
+.cache/
+
+# Test coverage
+htmlcov/
+.coverage
+.pytest_cache/
+
+# Log files
+*.log
+logs/
+
+# mypy
+.mypy_cache/
+
+# Claude IDE
+.claude/
