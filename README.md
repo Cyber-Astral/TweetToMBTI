@@ -296,9 +296,10 @@ ModuleNotFoundError: No module named 'xxx'
 
 ### 📧 联系方式
 
-- **作者**：Cyber Astral
+- **作者**：符控的Astral
 - **邮箱**：cyber.astral029@gmail.com
 - **GitHub**：[@Cyber-Astral](https://github.com/Cyber-Astral)
+- **Twitter/X**：[@CyberAstral](https://x.com/CyberAstral)
 - **问题反馈**：[提交 Issue](https://github.com/Cyber-Astral/TweetToMBTI/issues)
 
 ### ⚠️ 免责声明
@@ -591,6 +592,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Author**: Cyber Astral
 - **Email**: cyber.astral029@gmail.com
 - **GitHub**: [@Cyber-Astral](https://github.com/Cyber-Astral)
+- **Twitter/X**: [@CyberAstral](https://x.com/CyberAstral)
 - **Issues**: [Report a bug](https://github.com/Cyber-Astral/TweetToMBTI/issues)
 
 ### ⚠️ Disclaimer
